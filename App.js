@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, Alert, Image  } from 'react-native';
-import { Avatar } from '@rneui/themed';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -130,23 +129,20 @@ function ExercicesScreen({ route, navigation }) {
               style={styles.logo }
           />
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <View style={styles.container}>
-          <TouchableOpacity style={styles.button} title="Home" onPress={() => navigation.navigate('Home')}>
-            <Text style={styles.buttonText}>Home</Text>
-          </TouchableOpacity>
+        <View style={styles.header}>
           <View/>
           {exerciseInfo ? (
                 <>
-                    <Text style={styles.title}>Categorie: {exerciseInfo.category.name}</Text>
+                    <Text style={styles.text}>Categorie: {exerciseInfo.category.name}</Text>
                     {exerciseInfo.exercises && exerciseInfo.exercises.length > 0 && (
-                        <Text style={styles.title}>Nom de l'éxercise: {exerciseInfo.exercises[0].name}</Text>
+                        <Text style={styles.text}>Nom de l'éxercise: {exerciseInfo.exercises[0].name}</Text>
                     )}
                     {exerciseInfo.exercises && exerciseInfo.exercises.length > 0 && (
-                        <Text style={styles.title}>Description: {exerciseInfo.exercises[0].description.replace(/<[^>]+>/g, '')}</Text>
+                        <Text style={styles.text}>Description: {exerciseInfo.exercises[0].description.replace(/<[^>]+>/g, '')}</Text>
                     )}
                 </>
             ) : (
-                <Text>Chargement des exercises...</Text>
+                <Text style={styles.text}>Chargement des exercises...</Text>
             )}
 
         </View>
@@ -175,18 +171,22 @@ function RecettesScreen({ route }) {
 
   return (
     <ImageBackground source={require('./assets/salle.png')} style={styles.background}>
+      <Image
+              source={require('./assets/BOXING_CLUB-removebg-preview.png')} 
+              style={styles.logo }
+          />
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <View style={styles.container}>
+        <View style={styles.header}>
           {ingredientDetails ? (
             <View style={styles.ingredientDetails}>
-              <Text style={styles.title}>Nom de l'ingrédient: {ingredientDetails.name}</Text>
-              <Text style={styles.title}>Énergie: {ingredientDetails.energy}</Text>
-              <Text style={styles.title}>Protéines: {ingredientDetails.protein}</Text>
-              <Text style={styles.title}>Fibres: {ingredientDetails.fibres}</Text>
-              <Text style={styles.title}>Sodium: {ingredientDetails.sodium}</Text>
+              <Text style={styles.text}>Nom de l'ingrédient: {ingredientDetails.name}</Text>
+              <Text style={styles.text}>Énergie: {ingredientDetails.energy}</Text>
+              <Text style={styles.text}>Protéines: {ingredientDetails.protein}</Text>
+              <Text style={styles.text}>Fibres: {ingredientDetails.fibres}</Text>
+              <Text style={styles.text}>Sodium: {ingredientDetails.sodium}</Text>
             </View>
           ) : (
-            <Text style={styles.title}>Chargement des détails de l'ingrédient...</Text>
+            <Text style={styles.text}>Chargement des détails de l'ingrédient...</Text>
           )}
         </View>
       </ScrollView>
@@ -284,7 +284,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   text: {
-    color: '#fff', 
+    color: 'black', 
     fontSize: 20,
     fontWeight: 'bold',
   },
